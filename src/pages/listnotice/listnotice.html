@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addSup()">
+                <ion-icon name="add" color="secondary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content class='background'>
+    <ion-list  class='background'>
+        <!--        <ion-item *ngFor="let item of items" style='padding: 0' >-->
+        <ion-card style='margin: 2.5%; padding: 0;width: 95%;' *ngFor="let item of items" (click)="openDet()">
+            <ion-row>
+                <ion-col col-4> <img src="{{item.note}}" style="" item-left/> </ion-col>
+                <ion-col col-8>
+                    <ion-card-content style='padding: 5px;background-color: white;'>
+                    <ion-card-title style='padding: 5px;margin: 0;font-size: 18px;font-weight: bold;' color='theme'>
+                        {{item.title}}
+                    </ion-card-title>
+                    <p ion-text color = "green_txt" style="font-size: 14px;padding-left: 5px">Date: 12/12/2017</p>
+                    </ion-card-content></ion-col>
+            </ion-row>
+
+
+        </ion-card>
+        <!--<h2>{{item.title}}</h2>
+<h3 *ngIf ="notuser"><b>Product Code:</b> C/LPG-50/Total Gaz    <b>Lot No:</b> 1234</h3>
+<p><b *ngIf ="notuser">Supplier: </b>{{item.note}}  </p><p *ngIf ="notuser"><b>Quantity: </b>101</p>-->
+        <!--        </ion-item>-->
+
+    </ion-list>
+
+</ion-content>

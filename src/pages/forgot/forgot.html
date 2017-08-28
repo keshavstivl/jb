@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="card-background-page background" text-center>
+    <ion-list class='mar-t-50'>
+
+        <ion-item>
+            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
+            <ion-input type="email" placeholder='Email Address'></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label> <ion-icon name="call"></ion-icon></ion-label>
+            <ion-input type="phone" placeholder='Mobile Number'></ion-input>
+        </ion-item>
+
+
+    </ion-list>
+    <ion-row>
+        <ion-col col-12><button ion-button color="orangem" full  >Reset Password</button></ion-col>
+    </ion-row>
+</ion-content>

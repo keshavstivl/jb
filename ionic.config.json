@@ -1,5 +1,8 @@
 {
-  "name": "myApp",
-  "app_id": "",
-  "type": "ionic-angular"
+  "name": "Grievance Mayor App",
+  "app_id": "72bd6259",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

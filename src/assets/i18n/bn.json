@@ -1,0 +1,26 @@
+{
+    "HOME": "চেয়ারম্যান যশোর শিক্ষা বোর্ড",
+    "HELLO": "অতিথি",
+    "Speeches":"বানী",
+    "Events":"অনুষ্ঠান সমূহ",
+    "Notices":"বিজ্ঞপ্তিগুলিী",
+    "MediaCoverage":"গণমাধ্যম সম্প্রচার",
+    "NewFeedbacks":"নতুন প্রতিক্রিয়া",
+    "Home": "হোমে",
+    "SignIn": "সাইন ইন",
+    "AllFeedbacks": "সকল অভিযোগ সমূহ",
+    "PendingFeedbacks": "মুলতুবি প্রতিক্রিয়া সমুহ ",
+    "ResolvedFeedbacks": "সমাধানকৃত প্রতিক্রিয়া সমুহ",
+    "ManageUsers": "ব্যাবহারকারি মানেজ করুন",
+    "Settings": "সেটিংস",
+    "About": "জানুন",
+    "Login": "লোগিন",
+    "UserName": "ব্যাবহারকারি নাম",
+    "Password": "পাসওয়ার্ড",
+    "ForgotPassword": "পাসওয়ার্ড ভুলে গেছেন",
+    "CreateUser": "Create User",
+    "ViewRegisteredUsers": "View Registered Users",
+    "email_hint":"This will be userid for the user and will be used to login on other apps.",
+    "PushNotifications":"Push Notifications"
+
+}

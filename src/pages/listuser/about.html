@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <!--<ion-buttons end>
+<button ion-button icon-only (click)="openModal({charNum: selectedItem})">
+<ion-icon name="add" color="secondary"></ion-icon>
+</button>
+</ion-buttons>-->
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content class="background">
+    <h2 style="margin: 35px; color: white">  {{ 'HOME' | translate }} </h2>
+
+    <ion-list style="margin: 35px;" >
+        <ion-row *ngFor="let item of items">  
+            <ion-col col-12 style='padding: 0'>  <button ion-button clear small   color="light" style='padding: 0'>{{item.title}}</button>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+
+
+</ion-content>

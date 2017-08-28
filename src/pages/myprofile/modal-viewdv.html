@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Demand Request
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content >
+    <ion-label text-center>SP Code : Short Name</ion-label>
+
+    <ion-item>
+        <ion-label>Demand No:</ion-label>
+        <ion-input type="text" disabled value='25463'></ion-input>
+    </ion-item>
+     <ion-row >
+        <ion-col col-12><ion-label margin-left style='margin-top: 0;margin-bottom: 0'>Demand Date: 10/08/2017</ion-label></ion-col>
+    </ion-row>
+    <ion-row >
+        <ion-col col-12><ion-label margin-left style='margin-top: 5px;margin-bottom: 5px'>Demand Items For: Customer 1</ion-label></ion-col>
+    </ion-row>
+    <p style="background: #223311;height: 1px; margin: 0"></p>
+
+    <ion-list>
+        <ion-row style='align-items: center;' margin-left margin-right text-center>
+            <ion-col col-3>SKU</ion-col>
+            <ion-col col-4>Item</ion-col>
+            <ion-col col-2>Demand</ion-col>
+            <ion-col col-3>Approved</ion-col>
+        </ion-row>
+        <p style="background: #223311;height: 1px; margin: 0"></p>
+
+        <ion-row style='align-items: center;' *ngFor="let item of items" margin-left margin-right text-center>
+            <ion-col col-3>C-001-002</ion-col>
+            <ion-col col-4>{{item.title}}</ion-col>
+            <ion-col col-2>45 KG</ion-col>
+            <ion-col col-3><ion-input type="number" value="0" ></ion-input></ion-col>
+        </ion-row>
+
+    </ion-list>
+    <button margin-left ion-button secondary>Approve</button>
+    <button margin-left ion-button secondary>Approve & Deliver</button>
+
+</ion-content>

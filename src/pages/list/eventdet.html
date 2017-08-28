@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <!--<ion-buttons end>
+<button ion-button icon-only (click)="openModal({charNum: 0})">
+<ion-icon name="add" color="secondary"></ion-icon>
+</button>
+</ion-buttons>-->
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content style="top: 0px ">
+
+    <ion-list style="padding-bottom:100px">
+        <ion-row class="background">
+            <ion-col align-self-start style='padding: 0'>
+                <img src="img/image2.jpg"/>
+            </ion-col>
+        </ion-row>
+        <ion-item class="background">
+            <ion-row>
+                <ion-col align-self-start style='padding: 0'>
+                    <h2 style="font-size: 21px; color:white"><b>Event</b></h2>
+                </ion-col>
+            </ion-row> 
+            <ion-row>
+                <ion-col col-12 style='padding: 0'>
+                    <h2 style="color: orange;font-size: 14px">Occasion: <b>ABC </b> </h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12 style='padding: 0'>
+                    <h2 style=' color:white;font-size: 14px'>Venue: <b>ABC </b> </h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style='padding: 0'>
+                    <button ion-button color='orangem'clear small style="margin: 0 0 0" >Play Video</button>
+                </ion-col>
+                <ion-col align-self-end style='padding: 0'>
+                    <h2 style='color:white;text-align: right;font-size: 14px;'>Date: <b>04/08/2017</b></h2>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-card style='margin-top: 10px;width: 95%'>
+            <div style='margin: 10px;'>
+                <ion-row>
+                    <ion-col>
+                        <h2 > ABCD F  GD DS GS G</h2>
+                    </ion-col>
+                </ion-row></div>
+        </ion-card>
+        <ion-item>
+            <ion-grid>
+                <ion-row align-items-center>
+                    <ion-col  style='text-align: right'>
+                        <button ion-button clear icon-only large><ion-icon name="trash" color="darkm"></ion-icon></button>
+                    </ion-col>
+                    <ion-col style='text-align: left'>
+                        <button ion-button clear icon-only large (click)="editEvent()"><ion-icon name="create" color="darkm"></ion-icon></button>
+                    </ion-col></ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

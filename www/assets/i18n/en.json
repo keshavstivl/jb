@@ -1,0 +1,27 @@
+{
+    "HOME": "Chairman Jessore Education Board",
+    "HELLO": "Guest",
+    "Speeches":"Speeches",
+    "Events":"Events",
+    "Notices":"Notices",
+    "MediaCoverage":"Media Coverage",
+    "NewFeedbacks":"New Feedbacks",
+    "Home": "Home",
+    "SignIn": "Sign In",
+    "AllFeedbacks": "All Feedbacks",
+    "PendingFeedbacks": "Pending Feedbacks",
+    "ResolvedFeedbacks": "Resolved Feedbacks",
+    "ManageUsers": "Manage Users",
+    "Settings": "Settings",
+    "About": "About",
+    "Login": "Login",
+    "UserName": "User Name",
+    "Password": "Password",
+    "ForgotPassword": "Forgot Password",
+    "CreateUser": "Create User",
+    "ViewRegisteredUsers": "View Registered Users",
+    "email_hint":"This will be userid for the user and will be used to login on other apps.",
+    "PushNotifications":"Push Notifications"
+
+
+}

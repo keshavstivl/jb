@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <!--<ion-buttons end>
+<button ion-button icon-only (click)="openModal({charNum: 0})">
+<ion-icon name="add" color="secondary"></ion-icon>
+</button>
+</ion-buttons>-->
+    </ion-navbar>
+    <ion-grid style="position: fixed; height: 50px;">
+        <ion-row>
+            <ion-header>
+                <ion-item>
+                    <ion-label>Select Date</ion-label>
+                    <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="myDate"  ></ion-datetime>
+                </ion-item>
+                <ion-item item-start > 
+                    <ion-label>Branches</ion-label>
+                    <ion-select [(ngModel)]="opt" #C (ionChange)="onChange(C.value)" interface=popover float-left>
+                        <ion-option value=1 selected="true">Branch 1</ion-option>
+                        <ion-option value=2 >Branch 2</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-header>  
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content style="top: 90px ">
+
+    <ion-list style="padding-bottom:0px">
+        <ion-item *ngFor="let item of items">
+
+            <h2>Demand No: <b>{{item.title}}</b>        Date: <b>04/08/2017</b></h2>
+            <h3>For: <b>{{item.note}}</b></h3>
+            <!--            <h3>Mobile: <b>812364565656</b></h3>-->
+            <p>Receipt Amount: <b>Rs. 2001</b></p>
+        </ion-item>
+
+    </ion-list>
+    <ion-label style="padding-bottom: 90px; margin-left: 20px; color: brown">Sub Total: <b>Rs. 12001</b></ion-label>
+
+</ion-content>

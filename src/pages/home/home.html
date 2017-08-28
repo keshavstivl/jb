@@ -1,18 +1,76 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar >
+        <button ion-button menuToggle>
+            <ion-icon name="menu" style='color: white'></ion-icon>
+        </button>
+        <ion-title >{{ title | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="changeLang()" >
+                <ion-icon name="settings" color="white" ></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content padding class="card-background-page background" >
+    <ion-item  style='width: 98%;margin-left: 5px;height: 100px;' (click)="viewSup(1)">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+        <h2 class='theme-color' style='font-size: 18px;font-weight: bold;padding: 3px'>{{ 'HELLO' | translate }}</h2>
+        <div>  <h3 float-left>Tuesday, 17 August 2017</h3> </div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+        <p></p>
+        <ion-avatar item-start>
+            <img src="img/retail.jpg">
+        </ion-avatar>
+    </ion-item>
+    <ion-grid> 
+        <ion-row justify-content-center 	style='background: #FFF;padding: 2px; color: white'>
+            <ion-col col-6  text-center style="background-color:white;padding-left: 0;padding-top: 0;padding-right: 1px;padding-bottom: 1px" (click)="viewSup(2)">  
+                <div style="background-image: url('img/image1.jpg');background-size: 100% 100%;">
+                    <div style="background-color:rgba(48,63,159, 0.4);padding: 35px; height: 100%">
+                        <ion-icon name="mic"></ion-icon>
+                        <p style="margin: 0">{{ 'Speeches' | translate }}</p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-6 text-center style="background-color:white;padding-left: 1px;padding-top: 0;padding-right: 0px;padding-bottom: 1px" (click)="viewSup(4)">
+                <div style="background-image: url('img/image2.jpg');background-size: 100% 100%; height: 100%">
+                    <div style="background-color:rgba(48,63,159, 0.4);padding: 35px; height: 100%">
+                        <ion-icon name="list-box"></ion-icon>
+                        <p style="margin: 0">{{ 'Events' | translate }}</p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row> 
+        <ion-row justify-content-center 	style='background: #FFF;padding: 2px; color: white'>
+            <ion-col col-6  text-center style="background-color:white;padding-left: 0;padding-top: 0;padding-right: 1px;padding-bottom: 0px" (click)="viewSup(5)">  
+                <div style="background-image: url('img/image1.jpg');background-size: 100% 100%; height: 100%">
+                    <div style="background-color:rgba(48,63,159, 0.4);padding: 35px; height: 100%">
+                        <ion-icon name="mail"></ion-icon>
+                        <p style="margin: 0">{{ 'Notices' | translate }}</p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-6 text-center style="background-color:white;padding-left: 1px;padding-top: 0;padding-right: 0px;padding-bottom: 0px" (click)="viewSup(3)">
+                <div style="background-image: url('img/image2.jpg');background-size: 100% 100%; height: 100%">
+                    <div style="background-color:rgba(48,63,159, 0.4);padding: 35px; height: 100%">
+                        <ion-icon name="radio"></ion-icon>
+                        <p style="margin: 0">{{ 'MediaCoverage' | translate }}</p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row> 
+        <ion-row justify-content-center 	style='background: #FFF;padding: 2px; color: white'>
+            <ion-col col-12  text-center style="background-color:white;padding-left: 0;padding-top: 0;padding-right: 0px;padding-bottom: 0px" (click)="viewSup(6)">  
+                <div style="background-image: url('img/image1.jpg');background-size: 100% 100%;">
+                    <div style="background-color:rgba(48,63,159, 0.4);padding: 35px;">
+                        <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon>
+                        <p style="margin: 0">{{ 'NewFeedbacks' | translate }}</p>
+                    </div>
+                </div>
+            </ion-col>
+             
+        </ion-row> 
+    </ion-grid>
+
 </ion-content>

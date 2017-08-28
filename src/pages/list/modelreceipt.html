@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Receipt
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div style="margin: 20px;background: #000">
+        <div style="margin: 1px;background: #fff">
+            <ion-label text-center style='font-size: 3em;font: bold;font-family:serif'>RetailApp</ion-label>
+
+            <ion-label text-center>Customer Name | DV No:#######</ion-label>
+            <ion-label margin-left text-center>Date: 10/08/2017</ion-label>
+
+            <p style="background: #000;height: 1px; margin: 0"></p>
+            <ion-label text-center style='font-size: 3em;font: bold;font-family:serif;'>$330.00</ion-label>
+            <p style="background: #000;height: 1px;  "></p>
+
+            <ion-list style='margin-bottom: 0px'>
+                <ion-row style='align-items: center;' margin-left margin-right text-center>
+                    <ion-col col-6>Item Name</ion-col>
+                    <ion-col col-6>$ 300.00</ion-col>
+                </ion-row>
+                <p style="background: darkgrey;  height: 1px; margin-left: 15px;margin-right: 15px"></p>
+                <ion-row style='align-items: center;' margin-left margin-right text-center>
+                    <ion-col col-6>Sub Total</ion-col>
+                    <ion-col col-6>$ 300.00</ion-col>
+                </ion-row>
+                <ion-row style='align-items: center;' margin-left margin-right text-center>
+                    <ion-col col-6>VAT 15%</ion-col>
+                    <ion-col col-6>$ 30.00</ion-col>
+                </ion-row>
+                <p style="background: darkgrey;height: 1px;  margin-left: 15px;margin-right: 15px"></p>
+                <ion-row style='align-items: center;' margin-left margin-right text-center>
+                    <ion-col col-6>Total</ion-col>
+                    <ion-col col-6>$ 330.00</ion-col>
+                </ion-row>
+                <p style="background: #000;height: 1px; margin-bottom: 0px"></p>
+            </ion-list>
+            <div style="background: #f2f5f9;padding: 20px 20px 20px">
+                <ion-label text-center style='margin: 0'>(c) 2017 Stivl, All rights reserved.</ion-label>
+                <ion-label text-center style='margin: 0'>AP-11, Kolkata, India</ion-label>
+                <ion-label text-center>Retail App</ion-label>
+            </div>
+        </div>
+    </div>
+</ion-content>

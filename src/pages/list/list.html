@@ -1,23 +1,35 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addSup()">
+                <ion-icon name="add" color="secondary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content class='background'>
+    <ion-list  class='background'>
+<!--        <ion-item *ngFor="let item of items" style='padding: 0' >-->
+            <ion-card style='margin: 2.5%; padding: 0;width: 95%;' *ngFor="let item of items" (click)='viewDet()'>
+                <img src="{{item.note}}"/>
+                <ion-card-content style='padding: 5px;background-color: white;'>
+                    <ion-card-title style='padding: 5px;margin: 0;font-size: 18px;font-weight: bold;' color='theme'>
+                        {{item.title}}
+                    </ion-card-title>
+                    <p ion-text color = "green_txt" style="font-size: 14px;padding-left: 5px">Date: 12/12/2017</p>
+                </ion-card-content>
+            </ion-card>
+            <!--<h2>{{item.title}}</h2>
+            <h3 *ngIf ="notuser"><b>Product Code:</b> C/LPG-50/Total Gaz    <b>Lot No:</b> 1234</h3>
+            <p><b *ngIf ="notuser">Supplier: </b>{{item.note}}  </p><p *ngIf ="notuser"><b>Quantity: </b>101</p>-->
+<!--        </ion-item>-->
+
+    </ion-list>
+
 </ion-content>

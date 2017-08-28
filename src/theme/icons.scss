@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?6ahz0j');
+  src:  url('../assets/fonts/icomoon.eot?6ahz0j#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?6ahz0j') format('truetype'),
+    url('../assets/fonts/icomoon.woff?6ahz0j') format('woff'),
+    url('../assets/fonts/icomoon.svg?6ahz0j#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-language:before
+.ion-ios-icon-language:before ,
+.ion-ios-icon-language-outline:before ,
+.ion-md-icon-language:before ,
+.ion-md-icon-language-outline:before{
+    content: "\f1ab";font-size: 26px;
+}
+.icon-paper-plane-o:before {
+  content: "\f1d9";
+}
+.icon-send-o:before {
+  content: "\f1d9";
+}
+.icon-history:before {
+  content: "\f1da";
+}
+.icon-user-circle:before {
+  content: "\f2bd";
+}
+/*
+@include makeIcon(icon-language, '\f1ab');
+
+@mixin makeIcon($arg, $val) {
+    .icon-language:before ,
+    .ion-ios-icon-language:before ,
+    .ion-ios-icon-language-outline:before ,
+    .ion-md-icon-language:before ,
+    .ion-md-icon-language-outline:before {
+        content: $val;
+        //    font-size: 26px;
+    }
+}*/

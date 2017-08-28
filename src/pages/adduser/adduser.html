@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="card-background-page background">
+    <ion-list>
+        <ion-item>
+            <ion-label>User Type</ion-label>
+            <ion-select [(ngModel)]="type" interface=popover>
+                <ion-option value="dhaka" selected=true >Type 1</ion-option>
+                <ion-option value="n64">Type 2</ion-option>
+                <ion-option value="ps">Type 3</ion-option>
+                <ion-option value="genesis">Type 4</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'UserName' | translate}}</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-label><i>{{'email_hint' | translate}}</i></ion-label>
+        <ion-item>
+            <ion-label floating>{{'Password' | translate}}</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item> 
+
+
+
+    </ion-list>
+    <ion-row>
+        <ion-col col-12><button ion-button color="secondary" full>{{'CreateUser' | translate}}</button></ion-col>
+        <ion-col col-12><button ion-button   full clear small  style="color: #ffbd21" (click)="openUsers()">{{'ViewRegisteredUsers' | translate}}</button></ion-col>
+    </ion-row> </ion-content>

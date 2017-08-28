@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openEdit()">
+                <ion-icon name="create" color="secondary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <!--<ion-grid style="position: fixed; height: 50px;">
+<ion-row>
+<ion-header><ion-item item-start > 
+<ion-label>Options</ion-label>
+<ion-select [(ngModel)]="opt" #C (ionChange)="onChange(C.value)" interface=popover float-left>
+<ion-option value=1 selected="true">For Customers</ion-option>
+<ion-option value=2 >For Suppliers</ion-option>
+</ion-select>
+</ion-item>
+</ion-header>  
+</ion-row>
+</ion-grid>-->
+</ion-header>
+
+<ion-content style="top: 0px;" class="background">
+    <ion-card style='width: 40%'>
+        <img src="img/image1.jpg"/>
+    </ion-card>
+    <ion-card style='margin-top: 10px;width: 95%'>
+        <ion-item  >
+            <h2>Name:</h2>
+            <h3><b>Name</b></h3>
+        </ion-item>
+        <ion-item  >
+            <h2>Departments:</h2>
+            <h3><b>Departments</b></h3>
+        </ion-item>
+        <ion-item  >
+            <h2>Portfolios:</h2>
+            <h3><b>Portfolios</b></h3>
+        </ion-item>
+        <ion-item  >
+            <h2>Office Email Address:</h2>
+            <h3><b>Office Email Address</b></h3>
+        </ion-item>
+        <ion-item  >
+            <h2>Phone Numbers:</h2>
+            <h3><b>Phone Numbers</b></h3>
+        </ion-item>
+        <ion-item  >
+            <h2>Office Address:</h2>
+            <h3><b>Office Address</b></h3>
+        </ion-item>
+    </ion-card>
+    <ion-row>
+        <ion-col col-10><button ion-button color="danger" full>Log Out</button></ion-col>
+        <ion-col col-12><button ion-button color="light" full clear small (click)='openForgot()'>Change Password</button></ion-col>
+    </ion-row>
+</ion-content>

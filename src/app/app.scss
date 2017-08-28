@@ -1,6 +1,6 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
+ @import "../theme/icons";
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +14,69 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: center;
+      height: 120px;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 26%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.5em;
+    position: absolute;
+    top: 52%;
+   font-weight: bold; 
+      width: 100%;
+    color: #fff;
+  }
+
+}
+
+.toolbar-background {
+  background-color: #3c82b0;
+}
+.toolbar-title-md.toolbar-title.toolbar-title-md{
+    color: white;
+}
+.icon.icon-md.ion-md-menu{
+        color: white;
+}
+.back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back{
+            color: white;
+
+}
+.icon.icon-md.ion-md-close{
+  color: white;
+}
+.white-color{
+      color: white;
+}
+.theme-color{
+      color: #3c82b0;
+}
+.background{
+    background-color: #3c82b0;
+}
+.mar-t-50{
+    margin-top: 50px;
+}
+.line-wh{
+    background: white;height: 1px;
+}
+$colors: (
+    calm: (
+      base: #000,
+      contrast: #ffc900
+    )
+    
+);

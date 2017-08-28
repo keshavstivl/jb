@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Add Variation
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item item-start> 
+            <ion-label>Category</ion-label>
+            <ion-select [(ngModel)]="ClasssCode" interface=popover float-left>
+                <ion-option value="c1" selected="true">C(Consumable)</ion-option>
+                <ion-option value="c2">S(Serviceable)</ion-option>
+                <ion-option value="c3">R(Reusable)</ion-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item item-start >
+            <ion-label>Item</ion-label>
+            <ion-select [(ngModel)]="Item" interface=popover>
+                <ion-option value="item1" selected="true">LPG</ion-option>
+                <ion-option value="item2">Item 2</ion-option>
+                <ion-option value="item3">Item 3</ion-option>
+
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Variation Name</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating >SKU</ion-label>
+            <ion-input type="text" value='001'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating >Price</ion-label>
+            <ion-input type="text"  value='1000'></ion-input>
+        </ion-item>
+    </ion-list>
+    <button margin-left ion-button secondary>Save/Add</button>
+    <button ion-button color="danger" clear>Remove</button>
+
+</ion-content>

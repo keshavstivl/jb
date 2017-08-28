@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+        <!--<ion-buttons end>
+<button ion-button icon-only (click)="openModal({charNum: 0})">
+<ion-icon name="add" color="secondary"></ion-icon>
+</button>
+</ion-buttons>-->
+    </ion-navbar>
+    <!--<ion-grid style="position: fixed; height: 50px;">
+<ion-row>
+<ion-header><ion-item item-start > 
+<ion-label>Options</ion-label>
+<ion-select [(ngModel)]="opt" #C (ionChange)="onChange(C.value)" interface=popover float-left>
+<ion-option value=1 selected="true">For Customers</ion-option>
+<ion-option value=2 >For Suppliers</ion-option>
+</ion-select>
+</ion-item>
+</ion-header>  
+</ion-row>
+</ion-grid>-->
+</ion-header>
+
+<ion-content style="top: 0px;">
+
+    <ion-list style='padding-bottom: 50px'>
+        <ion-item *ngFor="let item of items">
+            <ion-row>
+                <ion-col col-6 style="padding: 0 0 0">
+                    <h2>No:<b>{{item.title}}</b></h2>
+                </ion-col>
+                <ion-col col-6 style="padding: 0 0 0">
+                    <h2>SKU:<b>000111</b></h2>
+                </ion-col>
+            </ion-row>
+            <!--            <h3>Mobile: <b>812364565656</b></h3>-->
+            <ion-row> 
+                <ion-col col-6 style="padding: 0 0 0"><p>Item: <b>LPG(Total Gaz)</b></p></ion-col>
+                <ion-col col-6 style="padding: 0 0 0"><p>Date: <b>15/09/1017</b></p></ion-col>
+            </ion-row>
+            <ion-row> 
+                <ion-col col-6 style="padding: 0 0 0"><p>In: <b>25</b></p></ion-col>
+                <ion-col col-6 style="padding: 0 0 0"><p>Out: <b>15</b></p></ion-col>
+            </ion-row>
+            <ion-row> <ion-col col-12 style="padding: 0 0 0"><h3>Balance: <b>{{item.note}}</b></h3></ion-col></ion-row>
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>
