@@ -9,11 +9,13 @@ import { ListFeedbacksPage } from '../pages/listfeedback/listfeedback';
 import { AddUserPage } from '../pages/adduser/adduser';
 import { AboutPage } from '../pages/listuser/listuser';
 import { SettingsPage } from '../pages/listuser/listuser';
+import { MyprofilePage } from '../pages/myprofile/myprofile';
 
 import { CONSTANT } from '../pages/constant';
 import { LoginPage } from '../pages/login/login';
 import { TranslateService } from '@ngx-translate/core';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -25,14 +27,17 @@ export class MyApp {
     rootPage: any = HomePage;
     pages: Array<{title: string, component: any,icon:string}>;
     lang:string;
+    txt:string;
+    user:any;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public translate: TranslateService,public nativeStorage: NativeStorage ) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public translate: TranslateService,public nativeStorage: Storage ) {
         this.initializeApp();
+        this.txt ='SignIn'
 
         // used for an example of ngFor and navigation
         this.pages = [
             { title: 'Home', component: HomePage ,icon:'home'},
-            { title: 'SignIn', component: LoginPage ,icon:'contact'},
+            { title: this.txt, component: LoginPage ,icon:'contact'},
             { title: 'AllFeedbacks', component: ListFeedbacksPage ,icon:'list-box'},
             { title: 'PendingFeedbacks', component: ListFeedbacksPage ,icon:'list-box'},
             { title: 'ResolvedFeedbacks', component: ListFeedbacksPage ,icon:'list-box'},
@@ -58,17 +63,17 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             this.statusBar.styleDefault();
             this.splashScreen.hide();
-             // Platform now ready, execute any required native code
+            // Platform now ready, execute any required native code
             if (this.platform.is('cordova')) {
                 // You're on a device, call the native plugins. Example: 
-                this.nativeStorage.getItem('lang')
+                this.nativeStorage.get('lang')
                     .then( data => {
                     console.log(data);
                     this.translate.use(this.lang);
                 }, error => console.error(error));
                 if(this.lang==null){
                     this.translate.setDefaultLang('bn');
-                    this.nativeStorage.setItem('lang', "bn")
+                    this.nativeStorage.set('lang', "bn")
                         .then(() => console.log('Stored lang Data!'), 
                               error => console.error('Error storing lang', error));
                 }
@@ -76,6 +81,23 @@ export class MyApp {
                 // You're testing in browser, do nothing or mock the plugins' behaviour.
                 console.log('Native pluging will not work on browser!')
             }
+            this.nativeStorage.get('user')
+                .then( data => {
+                this.user=data;
+                console.log(data)
+                //                console.log("Main user "+this.user.UserDetails.full_name)
+                if(this.user!=null){
+                    this.txt=this.user.UserDetails.full_name;
+                    this.pages[1].title=this.txt;
+                    this.pages[1].component=MyprofilePage;
+                }else  
+                    this.txt ='SignIn'
+
+            }, error => {
+                console.error(error)
+                this.txt ='SignIn'
+
+            });
         });
     }
 

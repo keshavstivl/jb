@@ -42,6 +42,8 @@ import { SpeechdetPage } from '../pages/list/list';
 import {DataService} from '../service/dataservice';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
+
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -50,7 +52,7 @@ export function createTranslateLoader(http: Http) {
             MyApp,HomePage,ListPage,AddMediaPage,ListFeedbacksPage,AddUserPage,ListuserPage,AboutPage,SettingsPage,MyprofilePage,EditProfPage,ChangePassPage,FeedbackDetPage,AddEventPage,ListNoticePage,TestPage,AddSpeechPage,AddNoticePage,LoginPage,ForgotPassPage,FeedbackAssignPage,EventdetPage,SpeechdetPage,MediadetPage,NoticedetPage
         ],
         imports: [
-            BrowserModule,HttpModule,
+            BrowserModule,HttpModule,IonicStorageModule.forRoot(),
             IonicModule.forRoot(MyApp),TranslateModule.forRoot({
                 loader: {
                     provide: TranslateLoader,

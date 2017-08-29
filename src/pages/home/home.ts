@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Platform } from 'ionic-angular';
 import { MyprofilePage } from '../myprofile/myprofile';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -18,31 +19,56 @@ import { MyprofilePage } from '../myprofile/myprofile';
 export class HomePage {
     title:string;
     lang:string;
+    user:any;
+    txt:string;
 
-    constructor(platform: Platform,public navCtrl: NavController,public translate: TranslateService,public nativeStorage: NativeStorage) {
-        console.log('CONSTANT.message2: '+ CONSTANT.message2);
+    constructor(platform: Platform,public navCtrl: NavController,public translate: TranslateService,public nativeStorage: Storage) {
+        //        console.log('CONSTANT.message2: '+ CONSTANT.message2);
         this.title='HOME';
         platform.ready().then((readySource) => {
             console.log('Platform ready from', readySource);
             // Platform now ready, execute any required native code
-            if (platform.is('cordova')) {
-                // You're on a device, call the native plugins. Example: 
-                nativeStorage.getItem('lang')
-                    .then( data => {
-                    console.log(data)
-                    this.lang=data;
+            // You're on a device, call the native plugins. Example: 
+            nativeStorage.get('lang')
+                .then( data => {
+                console.log(data)
+                this.lang=data;
                 this.translate.use(this.lang);
-                }, error => console.error(error));
                 if(this.lang==null){
                     translate.setDefaultLang('bn');
-                    nativeStorage.setItem('lang', "bn")
+                    nativeStorage.set('lang', "bn")
                         .then(() => console.log('Stored lang Data!'), 
                               error => console.error('Error storing lang', error));
                 }
+            }, error => {console.error(error);
+                         translate.setDefaultLang('bn');
+                         nativeStorage.set('lang', "bn")
+                             .then(() => console.log('Stored lang Data!'), 
+                                   error => console.error('Error storing lang', error))});
+
+
+            /*if (platform.is('cordova')) {
+
             } else {
                 // You're testing in browser, do nothing or mock the plugins' behaviour.
                 console.log('Native pluging will not work on browser!')
-            }
+            }*/
+            this.txt ='HELLO'
+
+            nativeStorage.get('user')
+                .then( data => {
+                console.log(data)
+                this.user=data;
+                if(this.user!=null)
+                    this.txt=this.user.UserDetails.full_name;
+                else
+                    this.txt ='HELLO'
+
+            }, error => {console.error(error)
+                         this.txt ='HELLO'
+
+                        });
+
         });
 
 
@@ -67,9 +93,9 @@ export class HomePage {
 
         if(this.lang=='bn')
         {this.translate.use('en');
-         this.nativeStorage.setItem('lang', "en")
+         this.nativeStorage.set('lang', "en")
              .then(() => {console.log('Stored lang Data!')
-                          this.nativeStorage.getItem('lang')
+                          this.nativeStorage.get('lang')
                               .then( data => {
                               console.log(data)
                               this.lang=data;
@@ -79,9 +105,9 @@ export class HomePage {
         }// use it to change the lang
         else 
         {this.translate.use('bn');
-         this.nativeStorage.setItem('lang', "bn")
+         this.nativeStorage.set('lang', "bn")
              .then(() => {console.log('Stored lang Data!')
-                          this.nativeStorage.getItem('lang')
+                          this.nativeStorage.get('lang')
                               .then( data => {
                               console.log(data)
                               this.lang=data;
