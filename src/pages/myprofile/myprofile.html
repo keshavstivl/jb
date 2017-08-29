@@ -25,48 +25,48 @@
 </ion-header>
 
 <ion-content style="top: 0px;" class="background">
-    <ion-card style='width: 40%'>
-        <img src="img/image1.jpg"/>
+    <ion-card style='width: 100px;height: 100px'>
+        <img src="{{txt.profile_image}}"/>
     </ion-card>
     <ion-card style='margin-top: 10px;width: 95%'>
        
         <ion-item  >
             <h2>Chairman Name:</h2>
-            <h3><b>Chairman Name</b></h3>
+            <h3><b>{{txt.full_name}}</b></h3>
         </ion-item>
         <ion-item  >
             <h2>Portfolios:</h2>
-            <h3><b>Portfolios</b></h3>
+            <h3><b>{{txt.portfolios}}</b></h3>
         </ion-item>
         <ion-item  >
             <h2>Office Email Address:</h2>
-            <h3><b>Office Email Address</b></h3>
+            <h3><b>{{txt.email}}</b></h3>
         </ion-item>
         <ion-item  >
             <h2>Phone Numbers:</h2>
-            <h3><b>Phone Numbers</b></h3>
+            <h3><b>{{txt.phone}}</b></h3>
         </ion-item>
 
         <ion-item  >
             <h2>Office No:</h2>
-            <h3><b>Office No</b></h3>
+            <h3><b>{{txt.epabx_nos}}</b></h3>
         </ion-item>
         <ion-item  >
             <h2>Residence No:</h2>
-            <h3><b>Residence No</b></h3>
+            <h3><b>{{txt.ext}}</b></h3>
         </ion-item>
         <ion-item  >
             <h2>Mobile Number:</h2>
-            <h3><b>Mobile Number</b></h3>
+            <h3><b>{{txt.fax_nos}}</b></h3>
         </ion-item>
 
         <ion-item  >
             <h2>Office Address:</h2>
-            <h3><b>Office Address</b></h3>
+            <h3><b>{{txt.office_address}}</b></h3>
         </ion-item>
     </ion-card>
     <ion-row align-items-center style='margin: 20px'>
-        <ion-col col-12 align-self-center><button ion-button color="danger" full>Log Out</button></ion-col>
+        <ion-col col-12 align-self-center><button ion-button color="danger" full (click)="logout()">Log Out</button></ion-col>
         <ion-col col-12 align-self-center><button ion-button color="light" full clear small (click)='openChangePass()'>Change Password</button></ion-col>
     </ion-row>
 </ion-content>

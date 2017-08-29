@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Http,RequestOptionsArgs,Headers } from "@angular/http";
 import 'rxjs/Rx';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class DataService {
     data:any;
     http:Http
-    constructor( http: Http) {
+    constructor( http: Http,private toastCtrl: ToastController) {
         this.http = http;
         this.data = null;
     }
@@ -49,6 +50,20 @@ export class DataService {
 
         //            .map(res => res.json())
         //            .toPromise();
+    }
+    
+    presentToast(msg) {
+        let toast = this.toastCtrl.create({
+            message: msg,
+            duration: 2000,
+            position: 'bottom'
+        });
+
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+
+        toast.present();
     }
 }
 

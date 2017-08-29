@@ -19,12 +19,10 @@ export class LoginPage {
     title:string;
     email:string;
     pass:string;
-    data:DataService;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,data: DataService,private toastCtrl: ToastController,
+    constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataService,private toastCtrl: ToastController,
                  public storage: Storage) {
         this.selectedItem = navParams.get('name');
-        this.data=data;
         this.title='Login';
         this.email="chairman@jb.com";
         this.pass="123456";
@@ -55,28 +53,19 @@ export class LoginPage {
 
                 if(res.Ack==1){
                     this.storage.set('user', res)
-                        .then(() => {console.log('Stored user Data!')
-                                     this.navCtrl.setRoot(HomePage,{name:3});
-                                    }, 
+                        .then(() => {
+                        console.log('Stored user Data!')
+                        //                        this.navCtrl.pop();
+                        this.data.presentToast(res.msg);
+                        this.navCtrl.setRoot(HomePage,{name:3});
+                    }, 
                               error => console.error('Error storing lang', error));
 
                 }else{
-                    this.presentToast(res.msg);
+                    this.data.presentToast(res.msg);
                 }
             });
-        }else this.presentToast("Please enter email and password.");
+        }else this.data.presentToast("Please enter email and password.");
     }
-    presentToast(msg) {
-        let toast = this.toastCtrl.create({
-            message: msg,
-            duration: 2000,
-            position: 'bottom'
-        });
 
-        toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
-        });
-
-        toast.present();
-    }
 }

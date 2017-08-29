@@ -66,7 +66,7 @@ export function createTranslateLoader(http: Http) {
             MyApp,HomePage,ListPage,AddMediaPage,ListFeedbacksPage,AddUserPage,ListuserPage,AboutPage,SettingsPage,MyprofilePage,EditProfPage,ChangePassPage,FeedbackDetPage,AddEventPage,ListNoticePage,TestPage,AddSpeechPage,AddNoticePage,LoginPage,ForgotPassPage,FeedbackAssignPage,EventdetPage,SpeechdetPage,MediadetPage,NoticedetPage
         ],
         providers: [
-            StatusBar,SplashScreen,NativeStorage,
+            StatusBar,SplashScreen,NativeStorage,DataService,
             {provide: ErrorHandler, useClass: IonicErrorHandler}
         ]
     })

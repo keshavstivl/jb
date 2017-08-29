@@ -64,10 +64,11 @@ export class HomePage {
                 else
                     this.txt ='HELLO'
 
-            }, error => {console.error(error)
-                         this.txt ='HELLO'
+            }, error => {
+                console.error(error)
+                this.txt ='HELLO'
 
-                        });
+            });
 
         });
 
@@ -77,7 +78,10 @@ export class HomePage {
         // That's right, we're pushing to ourselves!
         console.log('viewSup: '+i);
         if(i==1)
-            this.navCtrl.push(MyprofilePage,{name:3});
+           if(this.user!=null)
+                    this.navCtrl.push(MyprofilePage,{name:3});
+                else
+                    this.navCtrl.push(LoginPage,{name:3});
         else if(i==5)
             this.navCtrl.push(ListNoticePage,{name:i});
         else if(i==6)
