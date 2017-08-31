@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Platform, ModalController,ViewController  } from 'ionic-angular';
+import { NavController, NavParams,Platform, ModalController,ViewController ,LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {Param} from '../../service/dataservice';
 import { CONSTANT} from '../constant';
+import {Param} from '../../service/dataservice';
 import {DataService} from '../../service/dataservice';
 import { HomePage } from '../home/home';
 
@@ -47,24 +47,25 @@ export class MyprofilePage {
 
         parames.push({'key':'user_id','value':this.txt.user_id});
         parames.push({'key':'device_type','value':CONSTANT.device});
-        parames.push({'key':'device_token_id','value':CONSTANT.defaultToken});
-
+        parames.push({ 'key': 'device_token_id', 'value': CONSTANT.defaultToken });
+        let loading = this.data.getLoading("");
+        loading.present();
         this.data.postData(parames,"logout",(dataa) => {
             // do something here
             let res =JSON.parse(dataa._body)
             console.log(res);
 
             if(res.Ack==1){
-                this.storage.clear()
+                this.storage.set('user', null)
                     .then(() => {
                     console.log('Stored user Data  cleard!')
                     //                        this.navCtrl.pop();
-                    this.data.presentToast(res.msg);
+                    loading.dismiss();this.data.presentToast(res.msg);
                     this.navCtrl.setRoot(HomePage,{name:3});
-                },error => console.error('Error clearing', error));
+                },error =>{console.error('Error clearing', error);loading.dismiss();});
 
             }else{
-                this.data.presentToast(res.msg);
+                loading.dismiss();this.data.presentToast(res.msg);
             }
         });
 
@@ -72,24 +73,14 @@ export class MyprofilePage {
     openEdit() {
         //        let modal = this.modalCtrl.create(ModalDemandPage, characterNum);
         //        modal.present();
-        this.navCtrl.push(EditProfPage, {item: 0});
+        this.navCtrl.push(EditProfPage, {item: 0,user_data:this.txt});
     }
-
     openChangePass() {
         //        let modal = this.modalCtrl.create(ModalDemandPage, characterNum);
         //        modal.present();
-        this.navCtrl.push(ChangePassPage, {item: 0});
+        this.navCtrl.push(ChangePassPage, {item: 0,user_id:this.txt.user_id});
     }
 
-
-
-    /* itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
-  */
 }
 @Component({
     selector: 'page-editprof',
@@ -100,61 +91,61 @@ export class EditProfPage {
     icons: string[];
     items: Array<{title: string, note: string, icon: string}>;
     title:string;
-    op1:number;
-    myDate:string;
-    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
+    user_data:any;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataService,public modalCtrl: ModalController) {
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('name');
-        //       let name = navParams.get('name'); 
-        console.log('this.selectedItem '+JSON.stringify(this.selectedItem));
-        console.log('this.opt '+JSON.stringify(this.op1));
-        this.myDate = new Date().toISOString();
-
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['contact', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-                      'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
+        this.user_data = navParams.get('user_data');
+        console.log('this.user_data '+JSON.stringify(this.user_data));
 
         this.title='Edit Profile';
 
 
 
     }
-    openDvModal(characterNum) {
-        //        let modal = this.modalCtrl.create(ModalDVPage, characterNum);
-        //        modal.present();
+
+    updateProf(){
+        let parames : Array<Param>=new Array<Param>();
+        console.log(this.user_data.email+":"+this.user_data.full_name);
+        if(this.user_data.email!=null&&this.user_data.full_name!=null&&this.user_data.phone!=null){
+            parames.push({'key':'user_id','value':this.user_data.user_id});
+            parames.push({'key':'email','value':this.user_data.email});
+            parames.push({'key':'full_name','value':this.user_data.full_name});
+            parames.push({'key':'phone','value':this.user_data.phone});
+            parames.push({'key':'user_type','value':"C"});
+            parames.push({'key':'location','value':this.user_data.office_address});
+            parames.push({'key':'office_address','value':this.user_data.office_address});
+            parames.push({'key':'portfolios','value':this.user_data.portfolios});
+            parames.push({'key':'fax_nos','value':this.user_data.fax_nos});
+            parames.push({'key':'epabx_nos','value':this.user_data.epabx_nos});
+            parames.push({'key':'ext','value':this.user_data.ext});
+            parames.push({'key':'lat','value':"11"});
+            parames.push({'key':'lang','value':"11"});
+            parames.push({'key':'device_type','value':CONSTANT.device});
+            parames.push({'key':'device_token_id','value':CONSTANT.defaultToken});
+            let loading = this.data.getLoading("");
+            loading.present();
+
+            this.data.postData(parames,"updateMayorProfile",(dataa) => {
+                // do something here
+                console.log(dataa);
+//                if(dataa.status==200){
+                    let res =JSON.parse(dataa._body)
+                    console.log(res);
+                    if(res.Ack==1){
+                        loading.dismiss() ;
+                        this.data.presentToast(res.msg);
+                    }else{
+                        loading.dismiss();this.data.presentToast(res.msg);
+                    }
+//                }else{
+//                    loading.dismiss();this.data.presentToast(dataa.statusText);
+//                }
+            });
+
+        }else this.data.presentToast("Please enter all the fields values.");
     }
-
-
-    onChange(op1) {
-        console.log(op1);
-        /*this.items = [];
-        if(op1==1){
-            for (let i = 1; i < 12; i++) {
-                this.items.push({
-                    title: '123456',
-                    note: 'Customer '+i,
-                    icon: this.icons[0]
-                });
-            }
-        }else{
-            for (let i = 1; i < 12; i++) {
-                this.items.push({
-                    title: '123456',
-                    note: 'Supplier '+i,
-                    icon: this.icons[0]
-                });
-            }
-        }*/
-    }
-
-    /* itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
-  */
 }
 
 @Component({
@@ -166,27 +157,52 @@ export class ChangePassPage {
     icons: string[];
     items: Array<{title: string, note: string, icon: string}>;
     title:string;
-    op1:number;
-    myDate:string;
-    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
+    email:string;
+    oldPass:string;
+    newPass:string;
+    user_id:string;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataService, public loadingCtrl: LoadingController) {
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('name');
         //       let name = navParams.get('name'); 
         console.log('this.selectedItem '+JSON.stringify(this.selectedItem));
-        console.log('this.opt '+JSON.stringify(this.op1));
-        this.myDate = new Date().toISOString();
-
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['contact', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-                      'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
 
         this.title='Change Passwprd';
+        this.user_id = navParams.get('user_id');
 
 
 
     }
+    changePass(){
+        let parames : Array<Param>=new Array<Param>();
+        console.log(this.email+":"+this.oldPass);
+        if(this.email!=null&&this.oldPass!=null&&this.newPass!=null){
+            parames.push({'key':'user_id','value':this.user_id});
+            parames.push({'key':'email','value':this.email});
+            parames.push({'key':'old_pwd','value':this.oldPass});
+            parames.push({'key':'new_pwd','value':this.newPass});
+            parames.push({'key':'device_type','value':CONSTANT.device});
+            parames.push({'key':'device_token_id','value':CONSTANT.defaultToken});
+            let loading = this.loadingCtrl.create({
+                content: 'Please wait...'
+            });
 
+            loading.present();
+            this.data.postData(parames,"changepwd",(dataa) => {
+                // do something here
+                let res =JSON.parse(dataa._body)
+                console.log(res);
+                if(res.Ack==1){
+                    loading.dismiss() ;
+                    this.data.presentToast(res.msg);
+                }else{
+                    loading.dismiss();this.data.presentToast(res.msg);
+                }
+            });
+
+        }else this.data.presentToast("Please enter all the fiels values.");
+    }
 }
 
 @Component({

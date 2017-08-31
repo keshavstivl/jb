@@ -21,6 +21,9 @@
     "CreateUser": "Create User",
     "ViewRegisteredUsers": "View Registered Users",
     "email_hint":"This will be userid for the user and will be used to login on other apps.",
-    "PushNotifications":"Push Notifications"
+    "PushNotifications":"Push Notifications",
+    "E":"Officials",
+    "SE":"Secretory",
+    "EX":"Exam Controller"
 
 }

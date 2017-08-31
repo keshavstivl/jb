@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Platform, ModalController,ViewController  } from 'ionic-angular';
+import { NavController, NavParams,Platform, ModalController,ViewController,LoadingController  } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {Param} from '../../service/dataservice';
+import { CONSTANT} from '../constant';
+import {DataService} from '../../service/dataservice';
 
 @Component({
     selector: 'page-listuser',
@@ -12,10 +15,12 @@ export class ListuserPage {
     icons: string[];
     items: Array<{title: string, note: string, icon: string}>;
     title:string;
-    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
+    user_id:string;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public data: DataService,public loadingCtrl: LoadingController) {
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('name');
-        //       let name = navParams.get('name'); 
+        this.user_id = navParams.get('user_id');
         console.log('this.selectedItem '+JSON.stringify(this.selectedItem));
 
         // Let's populate this page with some filler content for funzies
@@ -26,7 +31,7 @@ export class ListuserPage {
         this.title='All Users';
 
 
-        for (let i = 1; i < 8; i++) {
+        /*for (let i = 1; i < 8; i++) {
             this.items.push({
                 title: 'User '+i,
                 note: 'Type'+i,
@@ -34,7 +39,8 @@ export class ListuserPage {
             });
         }
 
-
+*/
+        this.getList();
     }
     openModal(characterNum) {
         var    selectedItem = characterNum.charNum;
@@ -49,6 +55,41 @@ export class ListuserPage {
         }
     }
 
+    getList(){
+        let parames : Array<Param>=new Array<Param>();
+
+        parames.push({'key':'user_id','value':this.user_id});
+        parames.push({'key':'user_type','value':"ALL"});
+        parames.push({'key':'device_type','value':CONSTANT.device});
+        parames.push({'key':'device_token_id','value':CONSTANT.defaultToken});
+        let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+
+        loading.present();
+        this.data.postData(parames,"listUsers",(dataa) => {
+            // do something here
+            let res =JSON.parse(dataa._body)
+            console.log(res);
+
+            if(res.Ack==1){
+                this.items=res.all_users;
+                /*for(let ob of res.messages)
+                    this.items.push({
+                        title: ob.message_title,
+                        note: ob.message_image,
+                        date: ob.message_date
+                    });
+*/
+
+                loading.dismiss() ;
+                this.data.presentToast(res.msg);
+            }else{
+                loading.dismiss();this.data.presentToast(res.msg);
+            }
+        });
+
+    }
     /* itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(ListPage, {
@@ -202,8 +243,8 @@ export class SettingsPage {
         // Let's populate this page with some filler content for funzies
         this.icons = ['contact', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
                       'american-football', 'boat', 'bluetooth', 'build'];
-             this.title='Settings';
-         
+        this.title='Settings';
+
 
     }
     presentActionSheet() {
@@ -310,7 +351,7 @@ export class ModalItemPage {
         //        this.navCtrl.push(ListBrandPage,{name:3});
     }
     openStockAlert(){
-//        this.navCtrl.push(ListstockalertPage,{name:4});
+        //        this.navCtrl.push(ListstockalertPage,{name:4});
     }
     dismiss() {
         this.viewCtrl.dismiss();

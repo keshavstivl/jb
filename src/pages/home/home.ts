@@ -21,10 +21,14 @@ export class HomePage {
     lang:string;
     user:any;
     txt:string;
+    img:string;
+    date:Date;
 
     constructor(platform: Platform,public navCtrl: NavController,public translate: TranslateService,public nativeStorage: Storage) {
         //        console.log('CONSTANT.message2: '+ CONSTANT.message2);
         this.title='HOME';
+        this.date =  new Date();
+
         platform.ready().then((readySource) => {
             console.log('Platform ready from', readySource);
             // Platform now ready, execute any required native code
@@ -54,13 +58,16 @@ export class HomePage {
                 console.log('Native pluging will not work on browser!')
             }*/
             this.txt ='HELLO'
+            this.img ='img/retail.jpg'
 
             nativeStorage.get('user')
                 .then( data => {
                 console.log(data)
                 this.user=data;
-                if(this.user!=null)
+                if(this.user!=null){
                     this.txt=this.user.UserDetails.full_name;
+                    this.img=this.user.UserDetails.profile_image;
+                }
                 else
                     this.txt ='HELLO'
 
@@ -77,18 +84,17 @@ export class HomePage {
     viewSup(i) {
         // That's right, we're pushing to ourselves!
         console.log('viewSup: '+i);
-        if(i==1)
-           if(this.user!=null)
-                    this.navCtrl.push(MyprofilePage,{name:3});
-                else
-                    this.navCtrl.push(LoginPage,{name:3});
-        else if(i==5)
-            this.navCtrl.push(ListNoticePage,{name:i});
-        else if(i==6)
-            this.navCtrl.push(ListFeedbacksPage,{name:i});
-        else 
-            this.navCtrl.push(ListPage,{name:i});
-
+        if(this.user!=null){
+            if(i==1)
+                this.navCtrl.push(MyprofilePage,{name:3,user_id:this.user.UserDetails.user_id});
+            else if(i==5)
+                this.navCtrl.push(ListNoticePage,{name:i,user_id:this.user.UserDetails.user_id});
+            else if(i==6)
+                this.navCtrl.push(ListFeedbacksPage,{name:i,user_id:this.user.UserDetails.user_id});
+            else 
+                this.navCtrl.push(ListPage,{name:i,user_id:this.user.UserDetails.user_id});
+        }else
+            this.navCtrl.push(LoginPage,{name:3});
 
     }
 

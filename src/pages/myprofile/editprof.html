@@ -29,40 +29,40 @@
     <ion-card style='margin-top: 10px;width: 95%'>
         <ion-item>
             <ion-label stacked>Full Name</ion-label>
-            <ion-input type="text" placeholder="Full Name"></ion-input>
+            <ion-input type="text" placeholder="Full Name" [(ngModel)]="user_data.full_name"> </ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Portfolios</ion-label>
-            <ion-input type="text" placeholder="Portfolios"></ion-input>
+            <ion-input type="text" placeholder="Portfolios" [(ngModel)]="user_data.portfolios"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Email Address</ion-label>
-            <ion-input type="email" placeholder="Email Address"></ion-input>
+            <ion-input type="email" placeholder="Email Address"  [(ngModel)]="user_data.email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Phone Numbers</ion-label>
-            <ion-input type="phone" placeholder="Phone Numbers"></ion-input>
+            <ion-input type="phone" placeholder="Phone Numbers" [(ngModel)]="user_data.phone"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Office No</ion-label>
-            <ion-input type="phone" placeholder="Office No"></ion-input>
+            <ion-input type="phone" placeholder="Office No" [(ngModel)]="user_data.epabx_nos"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Residence No</ion-label>
-            <ion-input type="phone" placeholder="Residence No"></ion-input>
+            <ion-input type="phone" placeholder="Residence No" [(ngModel)]="user_data.ext"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Mobile Number</ion-label>
-            <ion-input type="phone" placeholder="Mobile Number"></ion-input>
+            <ion-input type="phone" placeholder="Mobile Number" [(ngModel)]="user_data.fax_nos"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Office Address</ion-label>
-            <ion-input type="text" placeholder="Office Address"></ion-input>
+            <ion-input type="text" placeholder="Office Address" [(ngModel)]="user_data.office_address"></ion-input>
         </ion-item>
 
 
     </ion-card>
     <ion-row>
-        <ion-col col-12><button ion-button color="secondary" full>Update</button></ion-col>
+        <ion-col col-12><button ion-button color="secondary" full (click)="updateProf()">Update</button></ion-col>
     </ion-row>
 </ion-content>

@@ -21,13 +21,13 @@
     <ion-list style="margin: 5px">
         <ion-item *ngFor="let item of items">
             <ion-row>  
-                <ion-col col-12 style='color: #3c82b0;padding: 0;font-size: 18px;'>Name: <b>{{item.title}}</b> </ion-col>
+                <ion-col col-12 style='color: #3c82b0;padding: 0;font-size: 18px;'>Name: <b>{{item.full_name}}</b> </ion-col>
             </ion-row>
             <ion-row>  
-                <ion-col col-12 style='padding: 0'>Email: <b>email@stivl.com</b></ion-col>
+                <ion-col col-12 style='padding: 0'>Email: <b>{{item.email}}</b></ion-col>
             </ion-row>
             <ion-row>  
-                <ion-col col-12 style='padding: 0'>User Type: <b>{{item.note}}</b> </ion-col>
+                <ion-col col-12 style='padding: 0'>User Type: <b>{{item.user_type | translate}}</b> </ion-col>
             </ion-row>
 
         </ion-item>

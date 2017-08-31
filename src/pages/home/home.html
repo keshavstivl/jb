@@ -16,11 +16,11 @@
     <ion-item  style='width: 98%;margin-left: 5px;height: 100px;' (click)="viewSup(1)">
 
         <h2 class='theme-color' style='font-size: 18px;font-weight: bold;padding: 3px'>{{txt|translate}}</h2>
-        <div>  <h3 float-left>Tuesday, 17 August 2017</h3> </div>
+        <div>  <h3 float-left>{{date  | date:'yMMMMEEEEd'}}</h3> </div>
 
         <p></p>
         <ion-avatar item-start>
-            <img src="img/retail.jpg">
+            <img src="{{img}}">
         </ion-avatar>
     </ion-item>
     <ion-grid> 

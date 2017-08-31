@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Platform, ModalController,ViewController  } from 'ionic-angular';
+import { NavController, NavParams,Platform, ModalController,ViewController,LoadingController  } from 'ionic-angular';
 import { AddNoticePage } from '../addnotice/addnotice';
+import {Param} from '../../service/dataservice';
+import { CONSTANT} from '../constant';
+import {DataService} from '../../service/dataservice';
 
 @Component({
     selector: 'page-listnotice',
@@ -9,12 +12,15 @@ import { AddNoticePage } from '../addnotice/addnotice';
 export class ListNoticePage {
     selectedItem: any;
     icons: string[];
-    items: Array<{title: string, note: string, icon: string}>;
+    items: Array<{title: string, note: string, date: Date}>;
     title:string;
-    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
+    user_id:string;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public data: DataService,public loadingCtrl: LoadingController) {
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('name');
-        //       let name = navParams.get('name'); 
+        this.user_id = navParams.get('user_id');
+
         console.log('this.selectedItem '+JSON.stringify(this.selectedItem));
 
         // Let's populate this page with some filler content for funzies
@@ -23,13 +29,7 @@ export class ListNoticePage {
         this.items = [];
 
         this.title='Notices';
-        for (let i = 1; i < 11; i++) {
-            this.items.push({
-                title: 'Notices ' + i,
-                note: 'img/image3.jpg',
-                icon: this.icons[0]
-            });
-        } 
+        this.getList("listMyMessages");
 
     }
     addSup() {
@@ -47,13 +47,40 @@ export class ListNoticePage {
         let modal = this.modalCtrl.create(ModalAttachPage, characterNum);
         modal.present();
     }
-    /* itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
-  */
+    getList(sub){
+        let parames : Array<Param>=new Array<Param>();
+
+        parames.push({'key':'user_id','value':this.user_id});
+        parames.push({'key':'device_type','value':CONSTANT.device});
+        parames.push({'key':'device_token_id','value':CONSTANT.defaultToken});
+        let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+
+        loading.present();
+        this.data.postData(parames,sub,(dataa) => {
+            // do something here
+            let res =JSON.parse(dataa._body)
+            console.log(res);
+
+            if(res.Ack==1){
+
+                for(let ob of res.messages)
+                    this.items.push({
+                        title: ob.message_title,
+                        note: ob.message_image,
+                        date: ob.message_date
+                    });
+
+
+                loading.dismiss() ;
+                this.data.presentToast(res.msg);
+            }else{
+                loading.dismiss();this.data.presentToast(res.msg);
+            }
+        });
+
+    }
 }
 
 @Component({

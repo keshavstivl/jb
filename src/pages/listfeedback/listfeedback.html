@@ -20,15 +20,15 @@
     <ion-list style="margin: 5px">
         <ion-item *ngFor="let item of items" (click)="openDetails()">
             <ion-row>  
-                <ion-col col-12 style='color: #3c82b0;padding: 0;font-size: 18px;'>Feedback No: <b>{{item.title}}</b> </ion-col>
+                <ion-col col-12 style='color: #3c82b0;padding: 0;font-size: 18px;'>Feedback No: <b>{{item.complain_number}}</b> </ion-col>
             </ion-row>
             <ion-row>  
-                <ion-col col-6 style='padding: 0'>Type: <b>{{item.note}}</b> </ion-col>
-                <ion-col col-6 style='padding: 0' align-self-end>By: <b>User 111</b></ion-col>
+                <ion-col col-6 style='padding: 0'>Type: <b>{{item.grivance_type}}</b> </ion-col>
+                <ion-col col-6 style='padding: 0' align-self-end>By: <b>{{item.posted_by}}</b></ion-col>
             </ion-row>
             <ion-row>  
-                <ion-col col-6 style='padding: 0'>Date: <b>04/08/2017</b></ion-col>
-                <ion-col col-6 style='padding: 0' align-self-end>Status: <b>PENDING</b> </ion-col>
+                <ion-col col-6 style='padding: 0'>Date: <b>{{item.posted_on| date:'dd/MM/yyyy'}}</b></ion-col>
+                <ion-col col-6 style='padding: 0' align-self-end>Status: <b>{{item.grivance_status}}</b> </ion-col>
             </ion-row>
         </ion-item>
 

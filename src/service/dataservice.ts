@@ -1,13 +1,16 @@
 import {Injectable} from "@angular/core";
 import {Http,RequestOptionsArgs,Headers } from "@angular/http";
 import 'rxjs/Rx';
-import { ToastController } from 'ionic-angular';
+import { ToastController,LoadingController } from 'ionic-angular';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class DataService {
     data:any;
-    http:Http
-    constructor( http: Http,private toastCtrl: ToastController) {
+    http:Http;
+    loading:any;
+
+    constructor( http: Http,private toastCtrl: ToastController,public loadingCtrl: LoadingController) {
         this.http = http;
         this.data = null;
     }
@@ -23,7 +26,7 @@ export class DataService {
         return this.data;
     }
 
-    postData(params:Array<Param>,suburl:string,callback: (data) => void){
+    postData(params:Array<Param>,suburl:string,callback: (dataa) => void){
         //        var json = JSON.stringify({ email: 'a@hotmail.com', password: 'root'});
         //        var params = 'json=' + json;
         var headers = new Headers();
@@ -31,27 +34,39 @@ export class DataService {
         //    let options = new RequestOptions({ headers: headers });
         //        let opts:RequestOptionsArgs = { headers: headers };
         let body = new FormData();
-        //        body.append('email', 'a@hotmail.com');
-        //        body.append('password', 'root');
+
         console.log(JSON.stringify(params));
-        //        for (let p in params) {
-        //            body.append(p.key,p.value);
-        //        }
+
         params.forEach(p=>{ 
             body.append(p.key,p.value);
 
         });
 
-        this.http.post('http://stivl.com/apps/jb/service/api/'+suburl,body, headers).subscribe(
-            data =>{ console.log(data);
-                    callback(data)},
-            err => console.log(err.json().message),
+        this.http.post('http://stivl.com/apps/jb/service/api/'+suburl,body, headers).catch((error: any) => {
+            if (error.status < 400 ||  error.status ===500) {
+                console.log(error.status);
+                let data={ok:false,status:error.status,_body:{Ack:0,msg:'Unknown Network error'}};
+                console.log('Unknown Network error');
+                error._body=JSON.stringify({Ack:0,msg:error.statusText});
+                callback(error);
+                return Observable.throw(new Error(error.status));
+            }
+        }).subscribe(
+            data =>{
+                console.log(data);
+                callback(data);
+            },
+            err =>{
+//                let data={ok:false,status:err.status,_body:{Ack:0,msg:'Unknown Network error1'}};
+                console.log('Unknown Network error1');
+//                callback(data);
+            },
             () => console.log('Authentication Complete'));
 
         //            .map(res => res.json())
         //            .toPromise();
     }
-    
+
     presentToast(msg) {
         let toast = this.toastCtrl.create({
             message: msg,
@@ -64,6 +79,12 @@ export class DataService {
         });
 
         toast.present();
+    }
+    getLoading(msg) {
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        return this.loading;
     }
 }
 

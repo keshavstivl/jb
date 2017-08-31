@@ -200,32 +200,4 @@ export class ListTallyPage {
     });
   }
   */
-}
-@Component({
-    selector: 'page-model',
-    templateUrl: 'modal.html'
-})
-export class ModalDemandPage {
-    character;
-    items: Array<{title: string, note: string, icon: string}>;
-
-    constructor(
-    public platform: Platform,  public params: NavParams,
-     public viewCtrl: ViewController,public modalCtrl: ModalController
-    ) {
-        this.items = [];
-        for (let i = 1; i < 4; i++) {
-            this.items.push({
-                title: 'Item '+i,
-                note: ''+i,
-                icon: ''
-            });
-        }
-    }
-    
-
-    dismiss() {
-        this.viewCtrl.dismiss();
-    }
-}
- 
+} 
